@@ -1,0 +1,15 @@
+{
+  "name": "FnanenDB",
+  "short_name": "FnanenDB",
+  "description": "Access FnanenDB songs and metadata",
+  "start_url": "https://aymanbagabas.com/fnanendb",
+  "display": "standalone",
+  "background_color": "green",
+  "icons": [
+    {
+      "src": "images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

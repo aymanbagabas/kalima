@@ -1,0 +1,14 @@
+CACHE MANIFEST
+
+fnanendb.json
+index.html
+
+# Version 0.0.2
+
+NETWORK: *
+
+CACHE:
+fnanendb.json
+index.html
+
+FALLBACK:

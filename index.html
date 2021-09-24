@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" manifest="cache.manifest">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="kalimat.webmanifest">
+  <script src="kalimat.js"></script>
+  <title>Kalimat - كلمات</title>
+</head>
+
+<body>
+  <script>
+    function getQueryVariable(variable) {
+      var query = window.location.search.substring(1);
+      var vars = query.split('&');
+      for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+        if (decodeURIComponent(pair[0]) == variable) {
+          return decodeURIComponent(pair[1]);
+        }
+      }
+    }
+  </script>
+  <div class="container-fluid">
+    <h1 class="mb-1"><a href="/" style="color:unset;text-decoration:unset;">Kalimat - كلمات</a></h1>
+    <div class="container">
+      <form id="searchForm" class="mb-3">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Search</label>
+          <input type="text" class="form-control" id="searchText" aria-describedby="searchText" required>
+          <div id="searchTextHelp" class="form-text">Enter text to search</div>
+        </div>
+        <div class="container">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="" id="artistsCheck" checked>
+            <label class="form-check-label" for="artistsCheck">
+              Artists
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="" id="composersCheck" checked>
+            <label class="form-check-label" for="composersCheck">
+              Composers
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="" id="titlesCheck" checked>
+            <label class="form-check-label" for="titlesCheck">
+              Titles
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="" id="authorsCheck" checked>
+            <label class="form-check-label" for="authorsCheck">
+              Authors
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" value="" id="lyricsCheck" checked>
+            <label class="form-check-label" for="lyricsCheck">
+              Lyrics
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <div id="content" class="container"></div>
+    <div class="container">
+      <footer class="pt-4">
+        <small class="text-muted">
+          <div>
+            This work is liscensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0.</a>
+          </div>
+          <div>
+            Powered by <a href="https://github.com/aymanbagabas/fnanendb">FnanenDB</a>, and <a href="https://github.com/aymanbagabas/kalimat">Kalimat</a>.
+          </div>
+        </small>
+      </footer>
+    </div>
+  </div>
+  <button class="add-button">Add to home screen</button>
+  <script>
+    const form = document.getElementById('searchForm')
+    form.addEventListener('submit', Kalimat.search)
+    window.onload = function () {
+      Kalimat.init()
+    }
+  </script>
+  <script>
+    // Code to handle install prompt on desktop
+
+    let deferredPrompt;
+    const addBtn = document.querySelector('.add-button');
+    addBtn.style.display = 'none';
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Prevent Chrome 67 and earlier from automatically showing the prompt
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      deferredPrompt = e;
+      // Update UI to notify the user they can add to home screen
+      addBtn.style.display = 'block';
+
+      addBtn.addEventListener('click', () => {
+        // hide our user interface that shows our A2HS button
+        addBtn.style.display = 'none';
+        // Show the prompt
+        deferredPrompt.prompt();
+        // Wait for the user to respond to the prompt
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+          } else {
+            console.log('User dismissed the A2HS prompt');
+          }
+          deferredPrompt = null;
+        });
+      });
+    });
+  </script>
+  <script>
+    // Cache and offline support
+    var cacheName = 'fnanendb-cache'
+    self.addEventListener('install', (e) => {
+      e.waitUntil((async () => {
+        const cache = await caches.open(cacheName);
+        await cache.addAll([
+          'index.html',
+          'fnanendb.json',
+          'images/logo.png'
+        ]);
+      })());
+    });
+    self.addEventListener('fetch', (e) => {
+      e.respondWith((async () => {
+        const r = await caches.match(e.request);
+        if (r) { return r; }
+        const response = await fetch(e.request);
+        const cache = await caches.open(cacheName);
+        cache.put(e.request, response.clone());
+        return response;
+      })());
+    });
+  </script>
+</body>
+
+</html>
