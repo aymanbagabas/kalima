@@ -4,6 +4,15 @@ import Fuse from 'fuse.js'
 import DB from './fnanendb.json'
 import _ from 'lodash'
 
+const fnanendb = 'https://github.com/aymanbagabas/fnanendb/raw/master/fnanendb.json'
+
+fetch(fnanendb).then(db => {
+  if (!db.ok) {
+    console.error('Failed to load fnanendb.json')
+  }
+  return Cache.put(fnanendb, db)
+})
+
 const fuseOptions = {
   shouldSort: true,
   threshold: 0.3,
