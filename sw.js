@@ -26,7 +26,7 @@ const PRECACHE_URLS = [
   'logo.png',
   'favicon.ico',
   'sw.js',
-  'fnanendb.js',
+  'https://aymanbagabas.com/fnanendb/fnanendb.js',
   'kalimat.js'
 ]
 
