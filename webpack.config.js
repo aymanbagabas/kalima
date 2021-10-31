@@ -13,9 +13,12 @@ module.exports = {
   plugins: [
     new CopyPlugin({
       patterns: [
+        { from: 'logo.png', to: '' },
+        { from: 'favicon.ico', to: '' },
         { from: 'index.html', to: '' },
         { from: 'kalimat.webmanifest', to: '' },
         { from: 'cache.manifest', to: '' },
+        { from: 'fnanendb.js', to: '' },
         { from: 'fnanendb.json', to: '' }
       ]
     }),

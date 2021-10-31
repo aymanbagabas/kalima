@@ -1,13 +1,13 @@
 {
-  "name": "FnanenDB",
-  "short_name": "FnanenDB",
+  "name": "Kalimat",
+  "short_name": "Kalimat",
   "description": "Access FnanenDB songs and metadata",
-  "start_url": "https://aymanbagabas.com/fnanendb",
+  "start_url": "https://aymanbagabas.com/kalimat",
   "display": "standalone",
-  "background_color": "green",
+  "background_color": "white",
   "icons": [
     {
-      "src": "images/logo.png",
+      "src": "logo.png",
       "sizes": "512x512",
       "type": "image/png"
     }

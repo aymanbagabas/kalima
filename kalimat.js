@@ -1,17 +1,19 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
 import Fuse from 'fuse.js'
-import DB from './fnanendb.json'
-import _ from 'lodash'
+// import DB from './fnanendb.json'
+import _, { startCase } from 'lodash'
 
-const fnanendb = 'https://github.com/aymanbagabas/fnanendb/raw/master/fnanendb.json'
+// const fnanendb = 'https://github.com/aymanbagabas/fnanendb/raw/master/fnanendb.js'
 
-fetch(fnanendb).then(db => {
-  if (!db.ok) {
-    console.error('Failed to load fnanendb.json')
-  }
-  return Cache.put(fnanendb, db)
-})
+// fetch(fnanendb).then(db => {
+//   if (!db.ok) {
+//     console.error('Failed to load fnanendb.json')
+//   }
+//   return Cache.put(fnanendb, db)
+// })
+
+const fields = ['artists', 'composers', 'titles', 'authors', 'lyrics']
 
 const fuseOptions = {
   shouldSort: true,
@@ -19,8 +21,8 @@ const fuseOptions = {
   includeScore: true
 }
 
-window.DB = DB
-window.db = Object.keys(DB).map(artist => DB[artist].map(song => ({ ...song, artist }))).flat(1)
+// window.DB = DB
+window.db = Object.keys(window.DB).map(artist => window.DB[artist].map(song => ({ ...song, artist }))).flat(1)
 
 function keyForField (field) {
   switch (field) {
@@ -62,7 +64,6 @@ export function search (e) {
   }
   const searchTextEl = document.getElementById('searchText')
   const searchText = searchTextEl.value
-  const fields = ['artists', 'composers', 'titles', 'authors', 'lyrics']
   const resultsEl = document.getElementById('content')
 
   setQuery(`?search=${searchText}`)
@@ -120,6 +121,18 @@ export function search (e) {
 }
 
 export function init () {
+  const formContainerEl = document.getElementById('searchFormContainer')
+  formContainerEl.innerHTML = fields.map(f => {
+    return `
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" value="" id="${f}Check" checked>
+      <label class="form-check-label" for="${f}Check">
+        ${startCase(f)}
+      </label>
+    </div>
+    `
+  }).join('\n')
+
   const params = new URLSearchParams(location.search)
   const contentEl = document.getElementById('content')
   contentEl.innerHTML = ''
@@ -136,14 +149,14 @@ export function init () {
     const song = window.db.find(song => song.title === title && song.artist === artist)
     contentEl.innerHTML = `
     <div class="card">
-      <h5 class="card-header">
+      <h5 class="card-header text-center">
         ${artist} - ${title}
       </h5>
       <div class="card-body">
-        <p class="card-text" style="white-space: pre;">${song.lyrics}</p>
-        ${song.author ? `<p class="card-text"><small class="text-muted"><b>Author:</b> <span onclick="Kalimat.setQuery('?author=${song.author}');Kalimat.init()" style="text-decoration:underline;cursor:pointer;">${song.author}</span></small></p>` : ''}
-        ${song.composer ? `<p class="card-text"><small class="text-muted"><b>Composer:</b> <span onclick="Kalimat.setQuery('?composer=${song.composer}');Kalimat.init()" style="text-decoration:underline;cursor:pointer;">${song.composer}</span></small></p>` : ''}
-        ${song.date ? `<p class="card-text"><small class="text-muted"><b>Date:</b> ${song.date}</small></p>` : ''}
+        <p class="card-text text-center" style="white-space: pre;">${song.lyrics}</p>
+        ${song.author ? `<p class="card-text text-center"><small class="text-muted"><b>Author:</b> <span onclick="Kalimat.setQuery('?author=${song.author}');Kalimat.init()" style="text-decoration:underline;cursor:pointer;">${song.author}</span></small></p>` : ''}
+        ${song.composer ? `<p class="card-text text-center"><small class="text-muted"><b>Composer:</b> <span onclick="Kalimat.setQuery('?composer=${song.composer}');Kalimat.init()" style="text-decoration:underline;cursor:pointer;">${song.composer}</span></small></p>` : ''}
+        ${song.date ? `<p class="card-text text-center"><small class="text-muted"><b>Date:</b> ${song.date}</small></p>` : ''}
       </div>
     </div>
 

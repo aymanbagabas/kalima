@@ -6,7 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="apple-touch-icon" href="logo.png">
   <link rel="manifest" href="kalimat.webmanifest">
+  <link rel="shortcut icon" href="favicon.ico">
+  <script src="https://aymanbagabas.com/fnanendb/fnanendb.js" crossorigin="anonymous"></script>
   <script src="kalimat.js"></script>
   <title>Kalimat - كلمات</title>
 </head>
@@ -21,39 +24,9 @@
           <input type="text" class="form-control" id="searchText" aria-describedby="searchText" required>
           <div id="searchTextHelp" class="form-text">Enter text to search</div>
         </div>
-        <div class="container">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="" id="artistsCheck" checked>
-            <label class="form-check-label" for="artistsCheck">
-              Artists
-            </label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="" id="composersCheck" checked>
-            <label class="form-check-label" for="composersCheck">
-              Composers
-            </label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="" id="titlesCheck" checked>
-            <label class="form-check-label" for="titlesCheck">
-              Titles
-            </label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="" id="authorsCheck" checked>
-            <label class="form-check-label" for="authorsCheck">
-              Authors
-            </label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="" id="lyricsCheck" checked>
-            <label class="form-check-label" for="lyricsCheck">
-              Lyrics
-            </label>
-          </div>
+        <div id="searchFormContainer" class="container">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Search</button>
       </form>
     </div>
     <div id="content" class="container"></div>
@@ -117,8 +90,9 @@
         const cache = await caches.open(cacheName);
         await cache.addAll([
           'index.html',
-          'fnanendb.json',
-          'images/logo.png'
+          'fnanendb.js',
+          'favicon.ico',
+          'logo.png'
         ]);
       })());
     });
