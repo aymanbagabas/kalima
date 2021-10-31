@@ -16,6 +16,7 @@ module.exports = {
         { from: 'logo.png', to: '' },
         { from: 'favicon.ico', to: '' },
         { from: 'index.html', to: '' },
+        { from: 'sw.js', to: '' },
         { from: 'kalimat.webmanifest', to: '' },
         { from: 'cache.manifest', to: '' }
       ]

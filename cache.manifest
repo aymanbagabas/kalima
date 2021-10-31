@@ -14,5 +14,6 @@ favicon.ico
 kalimat.js
 cache.manifest
 kalimat.webmanifest
+sw.js
 
 FALLBACK:
