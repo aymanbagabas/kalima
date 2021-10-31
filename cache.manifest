@@ -8,7 +8,11 @@ index.html
 NETWORK: *
 
 CACHE:
-fnanendb.json
 index.html
+logo.png
+favicon.ico
+kalimat.js
+cache.manifest
+kalimat.webmanifest
 
 FALLBACK:

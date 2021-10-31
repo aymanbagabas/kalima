@@ -17,9 +17,7 @@ module.exports = {
         { from: 'favicon.ico', to: '' },
         { from: 'index.html', to: '' },
         { from: 'kalimat.webmanifest', to: '' },
-        { from: 'cache.manifest', to: '' },
-        { from: 'fnanendb.js', to: '' },
-        { from: 'fnanendb.json', to: '' }
+        { from: 'cache.manifest', to: '' }
       ]
     }),
     new BrowserSyncPlugin({
