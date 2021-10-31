@@ -16,7 +16,7 @@
 
 <body>
   <div class="container-fluid">
-    <h1 class="mb-1">Kalimat - كلمات</h1>
+    <h1 id="headerTitle" class="mb-1">Kalimat - كلمات</h1>
     <div class="container">
       <form id="searchForm" class="mb-3">
         <div class="mb-3">
@@ -44,6 +44,13 @@
     </div>
   </div>
   <script>
+    const titleEl = document.getElementById('headerTitle')
+    titleEl.style.cursor = "pointer"
+    titleEl.addEventListener('click', function () {
+      Kalimat.setQuery('')
+      Kalimat.init()
+    })
+
     const form = document.getElementById('searchForm')
     form.addEventListener('submit', Kalimat.search)
     window.onload = function () {
