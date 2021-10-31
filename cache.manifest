@@ -1,0 +1,18 @@
+CACHE MANIFEST
+
+fnanendb.json
+index.html
+
+# Version 0.0.2
+
+NETWORK: *
+
+CACHE:
+index.html
+logo.png
+favicon.ico
+kalimat.js
+cache.manifest
+kalimat.webmanifest
+
+FALLBACK:
