@@ -3,6 +3,10 @@ const CopyPlugin = require('copy-webpack-plugin')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
 
+if (process.env.NODE_ENV !== 'production') {
+  console.log('Looks like we are in development mode!')
+}
+
 module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   entry: './kalimat.js',
