@@ -1,6 +1,7 @@
 CACHE MANIFEST
 
-fnanendb.json
+/fnanendb/fnanendb.js
+fnanendb.js
 index.html
 
 # Version 0.0.2
@@ -8,6 +9,7 @@ index.html
 NETWORK: *
 
 CACHE:
+/fnanendb/fnanendb.js
 index.html
 logo.png
 favicon.ico
