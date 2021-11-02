@@ -1,6 +1,7 @@
 const path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin')
 
 module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
@@ -16,7 +17,6 @@ module.exports = {
         { from: 'logo.png', to: '' },
         { from: 'favicon.ico', to: '' },
         { from: 'index.html', to: '' },
-        { from: 'sw.js', to: '' },
         { from: 'kalimat.webmanifest', to: '' },
         { from: 'cache.manifest', to: '' }
       ]
@@ -27,6 +27,14 @@ module.exports = {
       server: {
         baseDir: ['dist']
       }
+    }),
+    new WorkboxPlugin.GenerateSW({
+      runtimeCaching: [
+        {
+          urlPattern: 'https://aymanbagabas.com/fnanendb/fnanendb.js',
+          handler: 'NetworkFirst'
+        }
+      ]
     })
   ],
   module: {
