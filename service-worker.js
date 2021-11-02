@@ -108,7 +108,7 @@ define("./service-worker.js",['./workbox-068de2b8'], (function (workbox) { 'use 
 
   workbox.precacheAndRoute([{
     "url": "cache.manifest",
-    "revision": "18487734472f993062189d20fc827722"
+    "revision": "25b794de4e42a23e44cf56e82f05516e"
   }, {
     "url": "favicon.ico",
     "revision": "6ba86f3c21abf170b72c7a8b2599a35e"
