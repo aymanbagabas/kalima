@@ -1,8 +1,8 @@
 {
-  "name": "kalimat",
+  "name": "kalima",
   "version": "1.0.0",
   "description": "",
-  "main": "kalimat.js",
+  "main": "kalima.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "NODE_ENV=production webpack",

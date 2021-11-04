@@ -9,11 +9,11 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
-  entry: './kalimat.js',
+  entry: './kalima.js',
   output: {
-    filename: 'kalimat.js',
+    filename: 'kalima.js',
     path: path.resolve(__dirname, 'dist'),
-    library: 'Kalimat'
+    library: 'Kalima'
   },
   plugins: [
     new CopyPlugin({
@@ -21,7 +21,7 @@ module.exports = {
         { from: 'logo.png', to: '' },
         { from: 'favicon.ico', to: '' },
         { from: 'index.html', to: '' },
-        { from: 'kalimat.webmanifest', to: '' },
+        { from: 'kalima.webmanifest', to: '' },
         { from: 'cache.manifest', to: '' }
       ]
     }),

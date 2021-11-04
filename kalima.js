@@ -98,14 +98,14 @@ export function search (e) {
             function content () {
               switch (field) {
                 case 'artists':
-                  return `<button onclick="Kalimat.setQuery('?artist=${item}');Kalimat.init()" class="btn btn-link" type="button">${item}</button>`
+                  return `<button onclick="Kalima.setQuery('?artist=${item}');Kalima.init()" class="btn btn-link" type="button">${item}</button>`
                 case 'composers':
-                  return `<button onclick="Kalimat.setQuery('?composer=${item}');Kalimat.init()" class="btn btn-link" type="button">${item}</button>`
+                  return `<button onclick="Kalima.setQuery('?composer=${item}');Kalima.init()" class="btn btn-link" type="button">${item}</button>`
                 case 'lyrics':
                 case 'titles':
-                  return `<button onclick="Kalimat.setQuery('?artist=${item.artist}&title=${item.title}');Kalimat.init()" class="btn btn-link" type="button">${item.artist} - ${item.title}</button>`
+                  return `<button onclick="Kalima.setQuery('?artist=${item.artist}&title=${item.title}');Kalima.init()" class="btn btn-link" type="button">${item.artist} - ${item.title}</button>`
                 case 'authors':
-                  return `<button onclick="Kalimat.setQuery('?author=${item}');Kalimat.init()" class="btn btn-link" type="button">${item}</button>`
+                  return `<button onclick="Kalima.setQuery('?author=${item}');Kalima.init()" class="btn btn-link" type="button">${item}</button>`
               }
             }
             return `<li>${content()}</li>`
@@ -154,8 +154,8 @@ export function init () {
       </h5>
       <div class="card-body">
         <p class="card-text text-center" style="white-space: pre;">${song.lyrics}</p>
-        ${song.author ? `<p class="card-text text-center"><small class="text-muted"><b>Author:</b> <span onclick="Kalimat.setQuery('?author=${song.author}');Kalimat.init()" style="text-decoration:underline;cursor:pointer;">${song.author}</span></small></p>` : ''}
-        ${song.composer ? `<p class="card-text text-center"><small class="text-muted"><b>Composer:</b> <span onclick="Kalimat.setQuery('?composer=${song.composer}');Kalimat.init()" style="text-decoration:underline;cursor:pointer;">${song.composer}</span></small></p>` : ''}
+        ${song.author ? `<p class="card-text text-center"><small class="text-muted"><b>Author:</b> <span onclick="Kalima.setQuery('?author=${song.author}');Kalima.init()" style="text-decoration:underline;cursor:pointer;">${song.author}</span></small></p>` : ''}
+        ${song.composer ? `<p class="card-text text-center"><small class="text-muted"><b>Composer:</b> <span onclick="Kalima.setQuery('?composer=${song.composer}');Kalima.init()" style="text-decoration:underline;cursor:pointer;">${song.composer}</span></small></p>` : ''}
         ${song.date ? `<p class="card-text text-center"><small class="text-muted"><b>Date:</b> ${song.date}</small></p>` : ''}
       </div>
     </div>
@@ -169,7 +169,7 @@ export function init () {
       <div class="card-body">
         <div class="card-text">
           <ul>
-            ${window.db.filter(song => song.composer === composer).map(song => `<li><button onclick="Kalimat.setQuery('?artist=${song.artist}&title=${song.title}');Kalimat.init()" class="btn btn-link" type="button">${song.artist} - ${song.title}</button></li>`).join('')}
+            ${window.db.filter(song => song.composer === composer).map(song => `<li><button onclick="Kalima.setQuery('?artist=${song.artist}&title=${song.title}');Kalima.init()" class="btn btn-link" type="button">${song.artist} - ${song.title}</button></li>`).join('')}
           </ul>
         </div>
       </div>
@@ -184,7 +184,7 @@ export function init () {
       <div class="card-body">
         <div class="card-text">
           <ul>
-            ${window.db.filter(song => song.artist === artist).map(song => `<li><button onclick="Kalimat.setQuery('?artist=${song.artist}&title=${song.title}');Kalimat.init()" class="btn btn-link" type="button">${song.artist} - ${song.title}</button></li>`).join('')}
+            ${window.db.filter(song => song.artist === artist).map(song => `<li><button onclick="Kalima.setQuery('?artist=${song.artist}&title=${song.title}');Kalima.init()" class="btn btn-link" type="button">${song.artist} - ${song.title}</button></li>`).join('')}
           </ul>
         </div>
       </div>
@@ -199,7 +199,7 @@ export function init () {
       <div class="card-body">
         <div class="card-text">
           <ul>
-            ${window.db.filter(song => song.author === author).map(song => `<li><button onclick="Kalimat.setQuery('?artist=${song.artist}&title=${song.title}');Kalimat.init()" class="btn btn-link" type="button">${song.artist} - ${song.title}</button></li>`).join('')}
+            ${window.db.filter(song => song.author === author).map(song => `<li><button onclick="Kalima.setQuery('?artist=${song.artist}&title=${song.title}');Kalima.init()" class="btn btn-link" type="button">${song.artist} - ${song.title}</button></li>`).join('')}
           </ul>
         </div>
       </div>
