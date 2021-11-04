@@ -7,16 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="apple-touch-icon" href="logo.png">
-  <link rel="manifest" href="kalimat.webmanifest">
+  <link rel="manifest" href="kalima.webmanifest">
   <link rel="shortcut icon" href="favicon.ico">
   <script src="https://aymanbagabas.com/fnanendb/fnanendb.js" crossorigin="anonymous"></script>
-  <script src="kalimat.js"></script>
-  <title>Kalimat - كلمات</title>
+  <script src="kalima.js"></script>
+  <title>Kalima - كلمة</title>
 </head>
 
 <body>
   <div class="container-fluid">
-    <h1 id="headerTitle" class="mb-1">Kalimat - كلمات</h1>
+    <h1 id="headerTitle" class="mb-1">Kalima - كلمة</h1>
     <div class="container">
       <form id="searchForm" class="mb-3">
         <div class="mb-3">
@@ -37,7 +37,7 @@
             This work is liscensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0.</a>
           </div>
           <div>
-            Powered by <a href="https://github.com/aymanbagabas/fnanendb">FnanenDB</a>, and <a href="https://github.com/aymanbagabas/kalimat">Kalimat</a>.
+            Powered by <a href="https://github.com/aymanbagabas/fnanendb">FnanenDB</a>, and <a href="https://github.com/aymanbagabas/kalima">Kalima</a>.
           </div>
         </small>
       </footer>
@@ -47,14 +47,14 @@
     const titleEl = document.getElementById('headerTitle')
     titleEl.style.cursor = "pointer"
     titleEl.addEventListener('click', function () {
-      Kalimat.setQuery('')
-      Kalimat.init()
+      Kalima.setQuery('')
+      Kalima.init()
     })
 
     const form = document.getElementById('searchForm')
-    form.addEventListener('submit', Kalimat.search)
+    form.addEventListener('submit', Kalima.search)
     window.onload = function () {
-      Kalimat.init()
+      Kalima.init()
     }
   </script>
   <script>

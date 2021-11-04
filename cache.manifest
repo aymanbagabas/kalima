@@ -1,7 +1,6 @@
 CACHE MANIFEST
 
-/fnanendb/fnanendb.js
-fnanendb.js
+https://aymanbagabas.com/fnanendb/fnanendb.js
 index.html
 
 # Version 0.0.2
@@ -9,13 +8,13 @@ index.html
 NETWORK: *
 
 CACHE:
-/fnanendb/fnanendb.js
+https://aymanbagabas.com/fnanendb/fnanendb.js
 index.html
 logo.png
 favicon.ico
-kalimat.js
+kalima.js
 cache.manifest
-kalimat.webmanifest
-sw.js
+kalima.webmanifest
+service-worker.js
 
 FALLBACK:
