@@ -13,7 +13,7 @@ import _, { startCase } from 'lodash'
 //   return Cache.put(fnanendb, db)
 // })
 
-const fields = ['artists', 'composers', 'titles', 'lyricists', 'lyrics']
+const fields = ['artists', 'composers', 'titles', 'authors', 'lyrics']
 
 const fuseOptions = {
   shouldSort: true,
@@ -29,7 +29,7 @@ function keyForField (field) {
     case 'artists': return 'artist'
     case 'composers': return 'composer'
     case 'titles': return 'title'
-    case 'lyricists': return 'lyricist'
+    case 'authors': return 'author'
     case 'lyrics': return 'lyrics'
     default: return field
   }
@@ -41,7 +41,7 @@ function dbForField (field) {
       case 'artists': return window.db.map(song => song.artist)
       case 'composers': return window.db.map(song => song.composer)
       case 'titles': return window.db.map(song => ({ title: song.title, artist: song.artist }))
-      case 'lyricists': return window.db.map(song => song.lyricist)
+      case 'authors': return window.db.map(song => song.author)
       case 'lyrics':
       default:
         return window.db
@@ -104,8 +104,8 @@ export function search (e) {
                 case 'lyrics':
                 case 'titles':
                   return `<button onclick="Kalima.setQuery('?artist=${item.artist}&title=${item.title}');Kalima.init()" class="btn btn-link" type="button">${item.artist} - ${item.title}</button>`
-                case 'lyricists':
-                  return `<button onclick="Kalima.setQuery('?lyricist=${item}');Kalima.init()" class="btn btn-link" type="button">${item}</button>`
+                case 'authors':
+                  return `<button onclick="Kalima.setQuery('?author=${item}');Kalima.init()" class="btn btn-link" type="button">${item}</button>`
               }
             }
             return `<li>${content()}</li>`
@@ -154,7 +154,7 @@ export function init () {
       </h5>
       <div class="card-body">
         <p class="card-text text-center" style="white-space: pre;">${song.lyrics}</p>
-        ${song.lyricist ? `<p class="card-text text-center"><small class="text-muted"><b>Lyricist:</b> <span onclick="Kalima.setQuery('?lyricist=${song.lyricist}');Kalima.init()" style="text-decoration:underline;cursor:pointer;">${song.lyricist}</span></small></p>` : ''}
+        ${song.author ? `<p class="card-text text-center"><small class="text-muted"><b>Author:</b> <span onclick="Kalima.setQuery('?author=${song.author}');Kalima.init()" style="text-decoration:underline;cursor:pointer;">${song.author}</span></small></p>` : ''}
         ${song.composer ? `<p class="card-text text-center"><small class="text-muted"><b>Composer:</b> <span onclick="Kalima.setQuery('?composer=${song.composer}');Kalima.init()" style="text-decoration:underline;cursor:pointer;">${song.composer}</span></small></p>` : ''}
         ${song.date ? `<p class="card-text text-center"><small class="text-muted"><b>Date:</b> ${song.date}</small></p>` : ''}
       </div>
@@ -191,15 +191,15 @@ export function init () {
     </div>
 
     `
-  } else if (params.has('lyricist')) {
-    const lyricist = params.get('lyricist')
+  } else if (params.has('author')) {
+    const author = params.get('author')
     contentEl.innerHTML = `
     <div class="card">
-      <h5 class="card-header">${lyricist}</h5>
+      <h5 class="card-header">${author}</h5>
       <div class="card-body">
         <div class="card-text">
           <ul>
-            ${window.db.filter(song => song.lyricist === lyricist).map(song => `<li><button onclick="Kalima.setQuery('?artist=${song.artist}&title=${song.title}');Kalima.init()" class="btn btn-link" type="button">${song.artist} - ${song.title}</button></li>`).join('')}
+            ${window.db.filter(song => song.author === author).map(song => `<li><button onclick="Kalima.setQuery('?artist=${song.artist}&title=${song.title}');Kalima.init()" class="btn btn-link" type="button">${song.artist} - ${song.title}</button></li>`).join('')}
           </ul>
         </div>
       </div>
